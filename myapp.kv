@@ -1,0 +1,140 @@
+<StartScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: "Selecciona o crea un perfil"
+            font_size: 28
+            size_hint_y: None
+            height: 40
+
+        ScrollView:
+            size_hint_y: 0.6
+            GridLayout:
+                id: profile_list
+                cols: 1
+                spacing: 10
+                size_hint_y: None
+                height: self.minimum_height
+
+        BoxLayout:
+            size_hint_y: None
+            height: 40
+            spacing: 10
+
+            TextInput:
+                id: profile_input
+                hint_text: "Nombre del perfil"
+                multiline: False
+
+            Button:
+                text: "Crear"
+                on_release: root.create_profile()
+
+        Button:
+            text: "Omitir perfil"
+            size_hint_y: None
+            height: 40
+            background_color: [0.6, 0.6, 0.6, 1]
+            on_release: root.skip_profile()
+
+        Button:
+            text: "Exportar datos"
+            size_hint_y: None
+            height: 40
+            background_color: [0.3, 0.7, 0.3, 1]
+            on_release: root.export_data()
+
+
+<MainScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+
+        Label:
+            text: "Menú principal"
+            font_size: 28
+            size_hint_y: None
+            height: 40
+
+        Button:
+            text: "Capturar foto"
+            size_hint_y: None
+            height: 50
+            on_release: app.root.current = 'capture'
+
+        Button:
+            text: "Añadir emoción personalizada"
+            size_hint_y: None
+            height: 50
+            on_release: app.root.current = 'new_emotion'
+
+        Button:
+            text: "Volver"
+            size_hint_y: None
+            height: 40
+            background_color: [0.6, 0.6, 0.6, 1]
+            on_release: app.root.current = 'start'
+
+<CaptureScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+
+        Image:
+            id: camera_feed
+            size_hint_y: 0.6
+
+        ScrollView:
+            size_hint_y: 0.3
+            GridLayout:
+                id: emotion_grid
+                cols: 2
+                spacing: 5
+                padding: 5
+                size_hint_y: None
+                height: self.minimum_height
+
+        Button:
+            text: "Volver al menú"
+            size_hint_y: None
+            height: 40
+            on_release: app.root.current = 'main'
+
+<NewEmotionScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+
+        Button:
+            text: "Añadir nueva emoción"
+            size_hint_y: None
+            height: 50
+            on_release: root.add_custom_emotion()
+
+        Label:
+            text: "Tus emociones personalizadas"
+            font_size: 20
+            size_hint_y: None
+            height: 30
+
+        ScrollView:
+            size_hint_y: 0.6
+            GridLayout:
+                id: new_emotion_grid
+                cols: 1
+                spacing: 5
+                padding: 5
+                size_hint_y: None
+                height: self.minimum_height
+
+        Button:
+            text: "Volver al menú"
+            size_hint_y: None
+            height: 40
+            on_release: app.root.current = 'main'
